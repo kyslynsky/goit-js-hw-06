@@ -15,13 +15,18 @@ const ingredients = [
   "Condiments",
 ];
 
-const ingredientsItemEl = ingredients.map((ingredient, index) => {
-  const listItemEl = document.createElement("li");
-  listItemEl.textContent = ingredients[index];
-  listItemEl.classList.add("item");
-  
-  return listItemEl;
-});
+const ingredientsListEl = document.querySelector("#ingredients");
 
-const listEl = document.querySelector("#ingredients");
-listEl.append(...ingredientsItemEl);
+const makeIngredientsItems = (ingredients) => {
+  return ingredients.map((ingredient, index) => {
+    const listItemEl = document.createElement("li");
+    listItemEl.textContent = ingredients[index];
+    listItemEl.classList.add("item");
+
+    return listItemEl;
+  });
+};
+
+const ingredientsItemEl = makeIngredientsItems(ingredients);
+
+ingredientsListEl.append(...ingredientsItemEl);
