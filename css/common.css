@@ -37,9 +37,16 @@ img {
 
 .gallery {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 30px;
+  justify-items: center;
 }
 
 .gallery img {
   box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+  transition: transform 0.7s ease-in;
+}
+
+.gallery img:hover,
+.gallery img:focus {
+  transform: scale(1.5);
 }

@@ -27,7 +27,7 @@ const makeGallery = (images) => {
     const imgEl = document.createElement("img");
     imgEl.src = img.url;
     imgEl.alt = img.alt;
-    imgEl.width = 320;
+    imgEl.width = 240;
 
     itemEl.appendChild(imgEl);
 
