@@ -19,29 +19,29 @@ const refs = {
   boxes: document.querySelector("#boxes"),
 };
 
+refs.createBtn.addEventListener("click", createBoxes);
+
+let defaultSideSize = 30;
+let step = 10;
+
 function createBoxes(amount) {
+  amount = refs.inputEl.valueAsNumber;
+
   const elArr = [];
 
   for (let i = 0; i < amount; i += 1) {
     const boxEl = document.createElement("div");
     boxEl.style.backgroundColor = getRandomHexColor();
-    boxEl.style.width = `${30 + i * 10}px`;
-    boxEl.style.height = `${30 + i * 10}px`;
+    boxEl.style.width = `${defaultSideSize + step}px`;
+    boxEl.style.height = `${defaultSideSize + step}px`;
+    step += 10;
     elArr.push(boxEl);
   }
 
-  return elArr;
-}
-
-refs.createBtn.addEventListener("click", handlerCreate);
-
-function handlerCreate() {
-  const boxesQuantity = createBoxes(refs.inputEl.valueAsNumber);
-
-  if (refs.inputEl.valueAsNumber > 100) {
+  if (amount > 100) {
     alert("Enter valid quantity");
   } else {
-    refs.boxes.append(...boxesQuantity);
+    refs.boxes.append(...elArr);
   }
 }
 
@@ -50,4 +50,6 @@ refs.clearBtn.addEventListener("click", handlerDestroy);
 function handlerDestroy() {
   refs.boxes.innerHTML = "";
   refs.inputEl.value = "";
+
+  step = 10;
 }
