@@ -21,19 +21,32 @@ const images = [
 
 const galleryListEl = document.querySelector(".gallery");
 
-const makeGallery = (images) => {
-  return images.map((img) => {
-    const itemEl = document.createElement("li");
-    const imgEl = document.createElement("img");
-    imgEl.src = img.url;
-    imgEl.alt = img.alt;
-    imgEl.width = 240;
-
-    itemEl.appendChild(imgEl);
-
-    return itemEl;
-  });
+const makeGalleryMarkup = ({ url, alt }) => {
+  return `
+  <li>
+    <img src="${url}" alt="${alt}" width="240px">
+  </li>`;
 };
 
-const galleryEl = makeGallery(images);
-galleryListEl.append(...galleryEl);
+const makeGallery = images.map(makeGalleryMarkup).join("");
+
+galleryListEl.insertAdjacentHTML("afterbegin", makeGallery);
+
+// V2 with createElement
+//
+// const makeGallery = (images) => {
+//   return images.map((img) => {
+//     const itemEl = document.createElement("li");
+//     const imgEl = document.createElement("img");
+//     imgEl.src = img.url;
+//     imgEl.alt = img.alt;
+//     imgEl.width = 240;
+
+//     itemEl.appendChild(imgEl);
+
+//     return itemEl;
+//   });
+// };
+
+// const galleryEl = makeGallery(images);
+// galleryListEl.append(...galleryEl);
